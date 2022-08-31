@@ -30,7 +30,15 @@ function App() {
         onChange={(e) => handleSort(e)}
         checked={sortMethod === sort}
       />
-      <label htmlFor={sort}>{label}</label>
+      <label 
+        htmlFor={sort}
+        className='text-lg pl-2'
+      >{label}</label>
+      {sort != 'no_sort' && 
+        <button 
+          className='ml-2 text-lg px-1.5 absolute right-1' 
+          onClick={(e)=> handleClick(e)}
+        > ↹ </button>}
     </>
   }
 
@@ -65,21 +73,21 @@ function App() {
     e.preventDefault()
     let reversedPpl = [...people].reverse()
     console.log(people, reversedPpl)
-    setPeople([...reversedPpl])
+    setPeople([...people].reverse())
   }
 
   return (
-    <div className="mx-auto max-w-xl">
+    <div className="mx-auto max-w-xl mt-10">
 
-      <form>
+      <form className='absolute top-20 left-80 bg-blue-200 p-3 pr-10 rounded shadow-md'>
           <h2>Sort people</h2>
           {sortingMethods.map(method => (
-            <div key={method.sort}>
+            <div key={method.sort} className=''>
               {radioInput(method.sort, method.label)}
             </div>
           ))}
       </form>
-      <button onClick={(e)=> handleClick(e)}>↹</button>
+      
 
       <header>
         <h1 className="text-3xl font-bold">Birthdays</h1>
